@@ -19,25 +19,29 @@ export function Navbar({ textColor, carouselRef, onTextColorChange }: NavbarProp
 
   useEffect(() => {
     function onScroll() {
-      if (carouselRef?.current) {
-        const rect = carouselRef.current.getBoundingClientRect();
-        const pastCarousel = rect.bottom <= 0;
-        setSolidBg(pastCarousel);
+      // If no carouselRef, always solid
+      if (!carouselRef || !carouselRef.current) {
+        setSolidBg(true);
+        return;
+      }
 
-        // Only update color if it actually changed
-        if (pastCarousel && !lastSolid.current) {
-          console.log("Navbar: Forcing black (scrolled past carousel)");
-          onTextColorChange?.("black");
-          lastSolid.current = true;
-        } else if (!pastCarousel && lastSolid.current) {
-          console.log("Navbar: Resetting to carousel color");
-          onTextColorChange?.("reset" as any);
-          lastSolid.current = false;
-        }
+      const rect = carouselRef.current.getBoundingClientRect();
+      const pastCarousel = rect.bottom <= 0;
+      setSolidBg(pastCarousel);
+
+      // Only update color if it actually changed
+      if (pastCarousel && !lastSolid.current) {
+        console.log("Navbar: Forcing black (scrolled past carousel)");
+        onTextColorChange?.("black");
+        lastSolid.current = true;
+      } else if (!pastCarousel && lastSolid.current) {
+        console.log("Navbar: Resetting to carousel color");
+        onTextColorChange?.("reset" as any);
+        lastSolid.current = false;
       }
     }
 
-    const throttledScroll = throttle(onScroll, 100); // Add throttling
+    const throttledScroll = throttle(onScroll, 100);
     window.addEventListener("scroll", throttledScroll, { passive: true });
     onScroll(); // Initial check
 

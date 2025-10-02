@@ -41,6 +41,9 @@ body {
   .font-lexend {
     font-family: 'Lexend', sans-serif;
   }
+  .font-noto-jp {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
   .animate-shake {
     animation: shake 0.25s ease-in-out;
     transform-origin: top center; /* pivot at top so bottom wobbles */

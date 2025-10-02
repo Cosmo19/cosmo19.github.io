@@ -9,15 +9,24 @@ import { FastAverageColor } from "fast-average-color";
 interface FullPageCarouselProps {
   images: string[];
   onColorChange?: (color: "white" | "black") => void;
+  captions?: (string | null)[];
 }
 
-const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange }) => {
+const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange, captions }) => {
   const n = images.length;
   const slides = useMemo(() => [images[n - 1], ...images, images[0]], [images, n]);
+  const captionsPadded = useMemo(
+    () =>
+      captions
+        ? [captions[n - 1] ?? null, ...captions, captions[0] ?? null]
+        : Array(slides.length).fill(null),
+    [captions, n, slides.length]
+  );
   const swiperRef = useRef<any>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const lastColorRef = useRef<"white" | "black" | null>(null);
   const skipTransitionRef = useRef(false);
+  const [loaded, setLoaded] = useState<boolean[]>(() => Array(slides.length).fill(false));
 
   // Analyze the actual image for color
   const updateNavColor = (src: string) => {
@@ -42,12 +51,18 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange }) 
     };
   };
 
+  const [captionVisible, setCaptionVisible] = useState(false);
+
   // Only track slide change, not transition end
   const onSlideChange = (swiper: any) => {
     let realIndex = swiper.activeIndex - 1;
     if (realIndex < 0) realIndex = n - 1;
     if (realIndex >= n) realIndex = 0;
     setActiveIndex(realIndex);
+
+    // Hide, then show caption for fade/blur effect
+    setCaptionVisible(false);
+    setTimeout(() => setCaptionVisible(true), 50);
 
     // Update based on the real image only
     updateNavColor(images[realIndex]);
@@ -81,12 +96,19 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange }) 
 
   const hasMultiple = images.length > 1;
 
+  useEffect(() => {
+    // Delay to ensure DOM is ready for transition
+    const timeout = setTimeout(() => setCaptionVisible(true), 50);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div className="w-screen h-screen overflow-hidden relative">
       <Swiper
         modules={[Autoplay]}
-        autoplay={{ delay: 12000, disableOnInteraction: false }}
+        autoplay={hasMultiple ? { delay: 12000, disableOnInteraction: false } : false}
         loop={false}
+        allowTouchMove={hasMultiple}
         onSwiper={(s) => (swiperRef.current = s)}
         initialSlide={1}
         onSlideChange={onSlideChange}
@@ -98,10 +120,72 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange }) 
         {slides.map((src, idx) => (
           <SwiperSlide key={idx}>
             <div
-              className="w-full h-screen bg-center bg-cover"
+              className="w-full h-screen bg-center bg-cover relative"
               style={{ backgroundImage: `url(${src})` }}
               data-carousel-slide={idx}
-            />
+            >
+              {/* Loading indicator */}
+              {!loaded[(idx === 0 ? n - 1 : idx === slides.length - 1 ? 0 : idx - 1)] && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 z-10">
+                  <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                </div>
+              )}
+              {/* Preload image to detect when loaded */}
+              <img
+                src={src}
+                alt=""
+                className="hidden"
+                onLoad={() =>
+                  setLoaded((l) => {
+                    const arr = [...l];
+                    if (idx === 0) arr[n - 1] = true; // first clone
+                    else if (idx === slides.length - 1) arr[0] = true; // last clone
+                    else arr[idx - 1] = true; // real slides
+                    return arr;
+                  })
+                }
+                ref={img => {
+                  if (
+                    img &&
+                    img.complete &&
+                    !loaded[
+                      idx === 0
+                        ? n - 1
+                        : idx === slides.length - 1
+                        ? 0
+                        : idx - 1
+                    ]
+                  ) {
+                    setLoaded((l) => {
+                      const arr = [...l];
+                      if (idx === 0) arr[n - 1] = true;
+                      else if (idx === slides.length - 1) arr[0] = true;
+                      else arr[idx - 1] = true;
+                      return arr;
+                    });
+                  }
+                }}
+              />
+              {/* ...your caption code... */}
+              {captionsPadded &&
+                captionsPadded[idx] &&
+                loaded[
+                  idx === 0
+                    ? n - 1
+                    : idx === slides.length - 1
+                    ? 0
+                    : idx - 1
+                ] && (
+                  <div
+                    className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-1000
+                      ${activeIndex + 1 === idx && captionVisible ? "opacity-100" : "opacity-0"}`}
+                  >
+                    <span className="text-white text-4xl md:text-3xl italic text-center text-shadow-md drop-shadow-md">
+                      {captionsPadded[idx]}
+                    </span>
+                  </div>
+              )}
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -134,7 +218,7 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange }) 
                   : "border-gray-500 opacity-60"
               }`}
             >
-              <img src={src} alt={`Slide ${idx + 1}`} className="w-full h-full object-cover" />
+              <img src={src} alt={`Slide ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
             </button>
           ))}
         </div>

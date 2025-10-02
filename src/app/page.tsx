@@ -1,10 +1,21 @@
 "use client";
 
-import { useRef, useState } from "react";
+import ReactGA from "react-ga4";
+
+import { useEffect, useRef, useState } from "react";
 import FullPageCarousel from "@/components/FullPageCarousel";
 import { Navbar } from "@/components/Navbar";
+import { title } from "process";
 
 export default function Home() {
+  // Google Analytics Tracking
+  // Google Analytics Tracking
+  // Google Analytics Tracking
+  useEffect(() => {
+    ReactGA.initialize("GA_ID");
+    ReactGA.send({ hitType: "pageview", page: "/", title: "Home" });
+  }, []);
+
   const [navColor, setNavColor] = useState<"white" | "black">("white");
   const [forceBlack, _setForceBlack] = useState(false);
   const forceBlackRef = useRef(false);
@@ -51,7 +62,11 @@ export default function Home() {
       />
 
       <div ref={carouselRef} className="w-full h-screen">
-        <FullPageCarousel images={images} onColorChange={handleCarouselColorChange} />
+        <FullPageCarousel
+          images={images}
+          onColorChange={handleCarouselColorChange}
+          captions={["Reinventing Origami in Uniquely Modern Ways", null, null, null, null]}
+        />
       </div>
 
       <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">

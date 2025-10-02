@@ -3,13 +3,13 @@ import { useRef, useState, useEffect } from "react";
 import FullPageCarousel from "@/components/FullPageCarousel";
 import { Navbar } from "@/components/Navbar";
 
-export default function SelectedWorks() {
+export default function About() {
   const [navColor, setNavColor] = useState<"white" | "black">("white");
   const carouselRef = useRef<HTMLDivElement>(null);
   const lastCarouselColor = useRef<"white" | "black">("white");
 
   const images = [
-    "/portfolio/GEORG-JENSEN-INSTALLATION-0241-PAPEF.jpg",
+    "/portfolio/LSDesignWorkshop_Aug14-9957-scaled.jpg",
   ];
 
   // Update both state and ref when carousel color changes
@@ -19,7 +19,7 @@ export default function SelectedWorks() {
   };
 
   useEffect(() => {
-    document.title = "Selected Works - Coco Sato";
+    document.title = "About - Coco Sato";
   }, []);
 
   return (
@@ -36,14 +36,16 @@ export default function SelectedWorks() {
 
       <div ref={carouselRef} className="w-full h-screen">
         <FullPageCarousel 
-          images={images} 
+          images={images}
           onColorChange={handleCarouselColorChange}
-          captions={["Selected Works"]} />
+          captions={["About"]}
+        />
       </div>
 
-      <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-        <h1>Selected Works</h1>
-        <div className="row-span-1 w-full h-full"></div>
+      <div className="max-w-7xl mx-auto px-4 grid gap-8">
+        <div className="font-noto-jp font-light items-center justify-items-center min-h-screen pt-20">
+          <h1 className="text-3xl text-gray-800 text-center">Hello! I’m <span className="font-normal">Coco</span>, an artist using origami to change the way people see the world. <br/><br/> I create unique experiences that leave a lasting memory.</h1>
+        </div>
       </div>
     </>
   );

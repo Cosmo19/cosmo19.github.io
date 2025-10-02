@@ -20,6 +20,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Google Analytics
+import ReactGA from "react-ga4";
+ReactGA.initialize("GA_ID");
+
 export const metadata: Metadata = {
   title: "Coco Sato – Artist, Author & Performer. Reinventing Origami in Uniquely Modern Ways.",
   description: "Portfolio website of Coco Sato. Reinventing Origami in Uniquely Modern Ways",
@@ -35,8 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <main className="mx-auto">
           {children}
+
+          <Footer />
         </main>
-        <Footer />
       </body>
     </html>
   );
