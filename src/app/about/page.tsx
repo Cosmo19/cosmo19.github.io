@@ -9,7 +9,7 @@ export default function About() {
   const lastCarouselColor = useRef<"white" | "black">("white");
 
   const images = [
-    "/portfolio/LSDesignWorkshop_Aug14-9957-scaled.jpg",
+    "/portfolio/Portait-2019-Web-Small-2000x1333.jpg",
   ];
 
   // Update both state and ref when carousel color changes
@@ -38,7 +38,7 @@ export default function About() {
         <FullPageCarousel 
           images={images}
           onColorChange={handleCarouselColorChange}
-          captions={["About"]}
+          captions={[""]}
         />
       </div>
 
