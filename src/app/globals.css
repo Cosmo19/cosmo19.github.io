@@ -1,18 +1,30 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/fonts/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900; /* variable font supports this range */
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
+@font-face {
+  font-family: 'Lexend';
+  src: url('/fonts/Lexend/Lexend-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-noto-jp: 'Noto Sans JP', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
@@ -22,5 +34,30 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-noto-jp);
+}
+
+@layer utilities {
+  .font-lexend {
+    font-family: 'Lexend', sans-serif;
+  }
+  .animate-shake {
+    animation: shake 0.25s ease-in-out;
+    transform-origin: top center; /* pivot at top so bottom wobbles */
+    display: inline-block;        /* ensure transform-origin works */
+  }
+  .shake-hover:hover {
+    animation: shake 0.25s ease-in-out;
+    transform-origin: top center;
+    display: inline-block;
+  }
+}
+
+@keyframes shake {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(-2deg); }
+  40%  { transform: rotate(2deg); }
+  60%  { transform: rotate(-2deg); }
+  80%  { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
 }
