@@ -39,9 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <main className="mx-auto">
           {children}
-
-          <Footer />
         </main>
+
+        <Footer />
       </body>
     </html>
   );

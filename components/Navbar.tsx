@@ -3,19 +3,22 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { useRef, RefObject, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   textColor: "white" | "black";
   carouselRef: RefObject<HTMLDivElement | null>;
   onTextColorChange?: (color: "white" | "black") => void;
+  blurry?: boolean; // <-- add this
 }
 
-export function Navbar({ textColor, carouselRef, onTextColorChange }: NavbarProps) {
+export function Navbar({ textColor, carouselRef, onTextColorChange, blurry }: NavbarProps) {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [solidBg, setSolidBg] = useState(false);
   const lastSolid = useRef(false);
   const lastTextColor = useRef(textColor);
+  const pathname = usePathname();
 
   useEffect(() => {
     function onScroll() {
@@ -59,6 +62,9 @@ export function Navbar({ textColor, carouselRef, onTextColorChange }: NavbarProp
   // Navbar should hide if either scrolling down or mobile menu is open
   const navbarHidden = hidden || open;
 
+  // Use blurry prop to force solidBg false
+  const effectiveSolidBg = blurry ? false : solidBg;
+
   return (
     <>
       <header
@@ -68,9 +74,9 @@ export function Navbar({ textColor, carouselRef, onTextColorChange }: NavbarProp
       >
         <nav
           className={`flex items-center justify-between transition-colors duration-500 font-lexend
-            ${solidBg ? "bg-white" : "bg-white/10 backdrop-blur-xs"}
+            ${effectiveSolidBg ? "bg-white" : "bg-white/10 backdrop-blur-md"}
             ${textColor === "white" ? "text-white" : "text-black"}
-            ${solidBg ? "shadow-xs" : ""}
+            ${effectiveSolidBg ? "shadow-xs" : ""}
           `}
         >
           <div className="w-full flex justify-between items-center p-4 px-8">
@@ -100,10 +106,22 @@ export function Navbar({ textColor, carouselRef, onTextColorChange }: NavbarProp
                 ${open ? "hidden" : ""}
               `}
             >
-              <Link href="/selected-works">Selected Works</Link>
-              <Link href="/about">About</Link>
-              <Link href="/clients-awards">Clients & Awards</Link>
-              <Link href="/contact">Contact</Link>
+              <Link
+                href="/selected-works"
+                className={pathname === "/selected-works" ? "glow-nav" : ""}
+              >Selected Works</Link>
+              <Link
+                href="/about"
+                className={pathname === "/about" ? "glow-nav" : ""}
+              >About</Link>
+              <Link
+                href="/clients-awards"
+                className={pathname === "/clients-awards" ? "glow-nav" : ""}
+              >Clients & Awards</Link>
+              <Link
+                href="/contact"
+                className={pathname === "/contact" ? "glow-nav" : ""}
+              >Contact</Link>
             </div>
           </div>
         </nav>
@@ -125,11 +143,21 @@ export function Navbar({ textColor, carouselRef, onTextColorChange }: NavbarProp
           ✕
         </button>
 
-        <Link href="/selected-works" className="text-white text-2xl font-semibold" onClick={() => setOpen(false)}>Selected Works</Link>
-        <Link href="/about" className="text-white text-2xl font-semibold" onClick={() => setOpen(false)}>About</Link>
-        <Link href="/clients-awards" className="text-white text-2xl font-semibold" onClick={() => setOpen(false)}>Clients & Awards</Link>
-        <Link href="/contact" className="text-white text-2xl font-semibold" onClick={() => setOpen(false)}>Contact</Link>
+        <Link href="/selected-works" className={`text-white text-2xl font-semibold ${pathname === "/selected-works" ? "glow-nav" : ""}`} onClick={() => setOpen(false)}>Selected Works</Link>
+        <Link href="/about" className={`text-white text-2xl font-semibold ${pathname === "/about" ? "glow-nav" : ""}`} onClick={() => setOpen(false)}>About</Link>
+        <Link href="/clients-awards" className={`text-white text-2xl font-semibold ${pathname === "/clients-awards" ? "glow-nav" : ""}`} onClick={() => setOpen(false)}>Clients & Awards</Link>
+        <Link href="/contact" className={`text-white text-2xl font-semibold ${pathname === "/contact" ? "glow-nav" : ""}`} onClick={() => setOpen(false)}>Contact</Link>
       </div>
+
+      {/* Add glow-nav style 
+        text-shadow: 0 0 8px #a8d8ea, 0 0 16px #a8d8ea;
+      */}
+      <style>{`
+        .glow-nav {
+          
+          text-decoration: underline;
+        }
+      `}</style>
     </>
   );
 }

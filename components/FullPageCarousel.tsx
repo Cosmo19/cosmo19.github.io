@@ -52,6 +52,7 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange, ca
   };
 
   const [captionVisible, setCaptionVisible] = useState(false);
+  const [initialBlur, setInitialBlur] = useState(true);
 
   // Only track slide change, not transition end
   const onSlideChange = (swiper: any) => {
@@ -102,6 +103,12 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange, ca
     return () => clearTimeout(timeout);
   }, []);
 
+  useEffect(() => {
+    // Remove blur after 200ms
+    const timeout = setTimeout(() => setInitialBlur(false), 200);
+    return () => clearTimeout(timeout);
+  }, []);
+
   const scrollDown = () => {
     const start = window.scrollY;
     const end = window.innerHeight;
@@ -135,7 +142,9 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange, ca
         {slides.map((src, idx) => (
           <SwiperSlide key={idx}>
             <div
-              className="w-full h-screen bg-center bg-cover relative"
+              className={`w-full h-screen bg-center bg-cover relative transition-all duration-300
+                ${initialBlur && idx === 1 ? "backdrop-blur-md" : ""}
+              `}
               style={{ backgroundImage: `url(${src})` }}
               data-carousel-slide={idx}
             >
