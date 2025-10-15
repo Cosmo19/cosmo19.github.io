@@ -75,7 +75,7 @@ export function Navbar2({ textColor, carouselRef, onTextColorChange, blurry }: N
           `}
         >
           <div className="w-full flex justify-between items-center p-4 px-8">
-            <Link href="/" onClick={e => { e.preventDefault(); push("/", { className: slideClass }); }}>
+            <Link href="/" onClick={e => { e.preventDefault(); push("/"); }}>
               <Logo
                 className="w-12 h-12 transition-colors duration-500 shake-hover"
                 color1={textColor === "white" ? "#a8d8ea" : "#000"}
@@ -103,22 +103,22 @@ export function Navbar2({ textColor, carouselRef, onTextColorChange, blurry }: N
             >
               <Link
                 href="/selected-works"
-                onClick={e => { e.preventDefault(); push("/selected-works", { className: slideClass }); }}
+                onClick={e => { e.preventDefault(); push("/selected-works"); }}
                 className={pathname === "/selected-works" ? "glow-nav" : ""}
               >Selected Works</Link>
               <Link
                 href="/about"
-                onClick={e => { e.preventDefault(); push("/about", { className: slideClass }); }}
+                onClick={e => { e.preventDefault(); push("/about"); }}
                 className={pathname === "/about" ? "glow-nav" : ""}
               >About</Link>
               <Link
                 href="/clients-awards"
-                onClick={e => { e.preventDefault(); push("/clients-awards", { className: slideClass }); }}
+                onClick={e => { e.preventDefault(); push("/clients-awards"); }}
                 className={pathname === "/clients-awards" ? "glow-nav" : ""}
               >Clients & Awards</Link>
               <Link
                 href="/contact"
-                onClick={e => { e.preventDefault(); push("/contact", { className: slideClass }); }}
+                onClick={e => { e.preventDefault(); push("/contact"); }}
                 className={pathname === "/contact" ? "glow-nav" : ""}
               >Contact</Link>
             </div>
@@ -141,10 +141,10 @@ export function Navbar2({ textColor, carouselRef, onTextColorChange, blurry }: N
         >
           ✕
         </button>
-        <Link href="/selected-works" className={`text-white text-2xl font-semibold ${pathname === "/selected-works" ? "glow-nav" : ""}`} onClick={e => { e.preventDefault(); setOpen(false); push("/selected-works", { className: slideClass }); }}>Selected Works</Link>
-        <Link href="/about" className={`text-white text-2xl font-semibold ${pathname === "/about" ? "glow-nav" : ""}`} onClick={e => { e.preventDefault(); setOpen(false); push("/about", { className: slideClass }); }}>About</Link>
-        <Link href="/clients-awards" className={`text-white text-2xl font-semibold ${pathname === "/clients-awards" ? "glow-nav" : ""}`} onClick={e => { e.preventDefault(); setOpen(false); push("/clients-awards", { className: slideClass }); }}>Clients & Awards</Link>
-        <Link href="/contact" className={`text-white text-2xl font-semibold ${pathname === "/contact" ? "glow-nav" : ""}`} onClick={e => { e.preventDefault(); setOpen(false); push("/contact", { className: slideClass }); }}>Contact</Link>
+        <Link href="/selected-works" className={`text-white text-2xl font-semibold ${pathname === "/selected-works" ? "glow-nav" : ""}`} onClick={e => { e.preventDefault(); setOpen(false); push("/selected-works"); }}>Selected Works</Link>
+        <Link href="/about" className={`text-white text-2xl font-semibold ${pathname === "/about" ? "glow-nav" : ""}`} onClick={e => { e.preventDefault(); setOpen(false); push("/about"); }}>About</Link>
+        <Link href="/clients-awards" className={`text-white text-2xl font-semibold ${pathname === "/clients-awards" ? "glow-nav" : ""}`} onClick={e => { e.preventDefault(); setOpen(false); push("/clients-awards"); }}>Clients & Awards</Link>
+        <Link href="/contact" className={`text-white text-2xl font-semibold ${pathname === "/contact" ? "glow-nav" : ""}`} onClick={e => { e.preventDefault(); setOpen(false); push("/contact"); }}>Contact</Link>
       </div>
 
       {/* Add glow-nav style and slide-in animation */}
