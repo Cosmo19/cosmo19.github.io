@@ -16,7 +16,7 @@ export default function ClientsAwards() {
       <Navbar2 textColor={navColor} carouselRef={carouselRef} blurry/>
 
       <main className="flex-1">
-        <div className="max-w-5xl mx-auto px-6 sm:px-8">
+        <div className="max-w-8xl mx-auto px-6 sm:px-8">
           <div className="flex flex-col items-center gap-8">
             {/* Responsive image */}
             <img

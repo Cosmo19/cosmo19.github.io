@@ -31,6 +31,7 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange, ca
   const [captionVisible, setCaptionVisible] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const colorAnalysisCache = useRef<Map<string, "white" | "black">>(new Map());
 
   const hasMultiple = images.length > 1;
@@ -169,13 +170,20 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange, ca
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [hasMultiple, handleNext, handlePrev]);
 
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <div className="w-screen h-screen overflow-hidden relative bg-black">
       <Swiper
         modules={[Autoplay, EffectFade]}
         autoplay={hasMultiple ? { delay: 12000, disableOnInteraction: false } : false}
         loop={false}
-        allowTouchMove={hasMultiple}
+        allowTouchMove={hasMultiple && isMobile}
         onSwiper={(s) => (swiperRef.current = s)}
         initialSlide={1}
         onSlideChange={onSlideChange}
@@ -270,7 +278,12 @@ const FullPageCarousel: FC<FullPageCarouselProps> = ({ images, onColorChange, ca
       )}
 
       {hasMultiple && (
-        <div className="absolute bottom-4 w-full left-4 flex gap-2 z-30">
+        <div
+          className={`absolute bottom-4 left-4 flex gap-2 z-30
+            ${isMobile ? "flex-col items-start" : "flex-row"}
+          `}
+          style={{ maxWidth: "fit-content" }}
+        >
           {images.map((src, idx) => (
             <button
               key={idx}

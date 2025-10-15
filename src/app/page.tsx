@@ -70,22 +70,22 @@ export default function Home() {
 
       <div className="font-sans w-full p-8 pb-20 gap-16 sm:p-20">
           <div className="max-w-5xl mx-auto px-6">
-            <div className="font-sans grid items-center justify-items-center min-h-screen gap-4">
+            <div className="font-sans grid items-center justify-items-center gap-4">
 
               {/* Content */}
               <div className="mx-auto mb-30">
                 <h1 className="text-center text-3xl font-light mb-20">Coco's Philosophy</h1>
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div className="flex flex-col [@media(min-width:945px)]:flex-row items-center [@media(min-width:945px)]:items-start gap-8">
                   {/* Image on the left */}
                   <img
                     src="/portfolio/coco-index.jpeg"
                     alt="Coco Sato Portrait"
                     width={415}
                     height={415}
-                    className="w-[415px] h-[415px] object-cover object-center shadow-lg flex-shrink-0 flex-grow-0"
+                    className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[415px] aspect-square object-cover object-center shadow-lg flex-shrink-0 flex-grow-0"
                   />
                   {/* Blockquote on the right */}
-                  <blockquote className="md:ml-8 text-md font-light border-l-2 pl-6 italic text-gray-500">
+                  <blockquote className="[@media(min-width:945px)]:ml-8 text-md font-light border-l-2 pl-6 italic text-gray-500">
                     "When I face a piece of smooth pristine paper, I think about the future and faraway lands and what can I do to bring positive change.<br/><br/>
                     Can I inspire interest in different cultures? Will the work still resonate in decades to come? Could it even be transported into space? What legacy can I leave...<br/><br/>
                     Creating something beautiful yet timeless is my mission. I translate the wisdom of Japanese tradition for a new generation.<br/><br/>
@@ -98,7 +98,7 @@ export default function Home() {
               </div>
 
               {/* Client logos section */}
-              <div className="mx-auto mb-30">
+              <div className="mx-auto mb-20">
                 <div className="row-span-1 w-full h-full flex flex-col items-center">
                   <img
                     src="/portfolio/Client-Logos-2023.png"
