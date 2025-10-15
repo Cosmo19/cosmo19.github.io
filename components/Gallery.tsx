@@ -7,14 +7,14 @@ import Image from "next/image";
 
 const photos = [
     // Georg Jensen
-    { src: "/selected-works/sw_1.jpg", width: 2000, height: 1500, category: "George Jensen", desc: "A classic Georg Jensen piece." },
-    { src: "/selected-works/sw_2.jpg", width: 1920, height: 2560, category: "George Jensen", desc: null },
-    { src: "/selected-works/sw_3.jpg", width: 1920, height: 2560, category: "George Jensen", desc: null },
-    { src: "/selected-works/sw_4.jpg", width: 1920, height: 2560, category: "George Jensen", desc: null },
-    { src: "/selected-works/sw_5.jpg", width: 2000, height: 1500, category: "George Jensen", desc: null },
-    { src: "/selected-works/sw_6.jpg", width: 2000, height: 1500, category: "George Jensen", desc: null },
-    { src: "/selected-works/sw_7.jpg", width: 2000, height: 1500, category: "George Jensen", desc: null },
-    { src: "/selected-works/sw_8.jpg", width: 2000, height: 1500, category: "George Jensen", desc: null },
+    { src: "/selected-works/sw_1.jpg", width: 2000, height: 1500, category: "George Jensen", desc: "Aen — Georg Jensen" },
+    { src: "/selected-works/sw_2.jpg", width: 1920, height: 2560, category: "George Jensen", desc: "Aen — Georg Jensen" },
+    { src: "/selected-works/sw_3.jpg", width: 1920, height: 2560, category: "George Jensen", desc: "Aen — Georg Jensen" },
+    { src: "/selected-works/sw_4.jpg", width: 1920, height: 2560, category: "George Jensen", desc: "Aen — Georg Jensen" },
+    { src: "/selected-works/sw_5.jpg", width: 2000, height: 1500, category: "George Jensen", desc: "Aen — Georg Jensen" },
+    { src: "/selected-works/sw_6.jpg", width: 2000, height: 1500, category: "George Jensen", desc: "Aen — Georg Jensen" },
+    { src: "/selected-works/sw_7.jpg", width: 2000, height: 1500, category: "George Jensen", desc: "Aen — Georg Jensen" },
+    { src: "/selected-works/sw_8.jpg", width: 2000, height: 1500, category: "George Jensen", desc: "Aen — Georg Jensen" },
 
     // Viva La Vulva
     { src: "/selected-works/sw_1_1.jpg", width: 1200, height: 589, category: "Viva La Vulva", desc: null },
