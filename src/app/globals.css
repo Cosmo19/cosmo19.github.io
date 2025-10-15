@@ -1,20 +1,5 @@
 @import "tailwindcss";
-
-@font-face {
-  font-family: 'Noto Sans JP';
-  src: url('/fonts/Noto_Sans_JP/NotoSansJP-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900; /* variable font supports this range */
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Lexend';
-  src: url('/fonts/Lexend/Lexend-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Lexend:wght@100..900&display=swap');
 
 :root {
   --color-background: var(--background);
