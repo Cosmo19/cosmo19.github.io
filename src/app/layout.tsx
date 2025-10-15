@@ -66,10 +66,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         
         <link rel="canonical" href="https://cocosato.co.uk" />
         <script src="https://kit.fontawesome.com/9df4892153.js" crossOrigin="anonymous"></script>
-      
-        <link rel="preconnect" href="https://fonts.googleapis.com" /> 
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet"></link>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet"/>
       </Head>
       <body>
         <main className="mx-auto">

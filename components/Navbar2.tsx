@@ -150,8 +150,6 @@ export function Navbar2({ textColor, carouselRef, onTextColorChange, blurry }: N
       {/* Add glow-nav style and slide-in animation */}
       <style>{`
         .glow-nav {
-          text-shadow: 0 0 8px #a8d8ea, 0 0 16px #a8d8ea;
-          text-decoration: underline;
         }
         .view-transition-slide-in {
           animation: slide-in 0.5s cubic-bezier(.4,0,.2,1);
