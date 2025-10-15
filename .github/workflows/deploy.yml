@@ -2,7 +2,10 @@ name: Deploy Next.js to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # runs every time you push to main
+    branches: [ main ]
+
+permissions:
+  contents: write  # 👈 add this line
 
 jobs:
   build:
