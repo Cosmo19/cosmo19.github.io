@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { Navbar } from "@/components/Navbar";
+import { Navbar2 } from "@/components/Navbar2";
 import FullPageCarousel from "@/components/FullPageCarousel";
 
 import Gallery from "@/components/Gallery";
@@ -27,7 +27,7 @@ export default function SelectedWorks() {
   // Render components
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar
+      <Navbar2
         textColor={navColor}
         carouselRef={carouselRef}
         onTextColorChange={(color: "white" | "black" | "reset") => {

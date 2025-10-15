@@ -4,7 +4,7 @@ import ReactGA from "react-ga4";
 
 import { useEffect, useRef, useState } from "react";
 import FullPageCarousel from "@/components/FullPageCarousel";
-import { Navbar } from "@/components/Navbar";
+import { Navbar2 } from "@/components/Navbar2";
 
 export default function Home() {
   // Google Analytics Tracking
@@ -16,7 +16,7 @@ export default function Home() {
   }, []);
 
   const [navColor, setNavColor] = useState<"white" | "black">("white");
-  const [forceBlack, _setForceBlack] = useState(false);
+  const [, _setForceBlack] = useState(false);
   const forceBlackRef = useRef(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const lastCarouselColor = useRef<"white" | "black">("white");
@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <>
-      <Navbar
+      <Navbar2
         textColor={navColor}
         carouselRef={carouselRef}
         onTextColorChange={(color: "white" | "black" | "reset") => {
@@ -69,33 +69,12 @@ export default function Home() {
       </div>
 
       <div className="font-sans w-full p-8 pb-20 gap-16 sm:p-20">
-          <div className="max-w-8xl mx-auto">
+          <div className="max-w-5xl mx-auto px-6">
             <div className="font-sans grid items-center justify-items-center min-h-screen gap-4">
-              {/* YouTube video embed, 1 */}
-              <div className="w-full max-w-4xl aspect-video mx-auto shadow-lg overflow-hidden">
-                <iframe
-                  src="https://www.youtube.com/embed/LM6kgI-7E68"
-                  title="Barilla Tortellini, Origami Artist Coco Sato, by Evi Abeler Photography"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full"
-                ></iframe>
-              </div>
-
-              {/* YouTube video embed, 1 */}
-              <div className="w-full max-w-4xl aspect-video mx-auto shadow-lg overflow-hidden">
-                <iframe
-                  src="https://www.youtube.com/embed/LS7RCwb11vw"
-                  title="Barilla Tortellini, Origami Artist Coco Sato, by Evi Abeler Photography"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="w-full h-full"
-                ></iframe>
-              </div>
 
               {/* Content */}
-              <div className="max-w-4xl mx-auto my-20 mb-15">
-                <h1 className="text-center text-3xl font-light my-6 mb-10">Coco's Philosophy</h1>
+              <div className="mx-auto mb-30">
+                <h1 className="text-center text-3xl font-light mb-20">Coco's Philosophy</h1>
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
                   {/* Image on the left */}
                   <img
@@ -119,13 +98,12 @@ export default function Home() {
               </div>
 
               {/* Client logos section */}
-              <div className="max-w-4xl mx-auto mb-15 my-30">
-                <h1 className="text-center text-3xl font-light my-6">Selected Clients</h1>
+              <div className="mx-auto mb-30">
                 <div className="row-span-1 w-full h-full flex flex-col items-center">
                   <img
                     src="/portfolio/Client-Logos-2023.png"
                     alt="Client Logos"
-                    className="w-full max-w-3xl h-auto object-contain mx-auto pointer-events-none"
+                    className="h-auto object-contain mx-auto pointer-events-none"
                     style={{ minWidth: 200 }}
                   />
                 </div>

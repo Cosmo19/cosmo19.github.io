@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { ViewTransitions } from "next-view-transitions";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
+    <ViewTransitions>
     <html lang="en">
       <head>
         <link rel="icon" href="images/logo.png" />
@@ -40,9 +42,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="mx-auto">
           {children}
         </main>
-
         <Footer />
       </body>
     </html>
+    </ViewTransitions>
   );
 }
