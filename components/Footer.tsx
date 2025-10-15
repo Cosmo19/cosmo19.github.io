@@ -10,7 +10,7 @@ import { faSquareYoutube } from "@fortawesome/free-brands-svg-icons";
 export function Footer() {
   return (
     <footer className="py-10 pt-20 opacity-80" style={{ backgroundColor: "#f8f8f8" }}>
-      <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 grid-rows-1 md:grid-cols-4 md:grid-rows-1 gap-10 items-start">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 grid grid-cols-2 grid-rows-1 md:grid-cols-4 md:grid-rows-1 gap-10 items-start">
         {/* Connect with me */}
         <div>
           <h3 className="text-md text-gray-800 mb-4">

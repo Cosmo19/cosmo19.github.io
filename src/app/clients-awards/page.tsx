@@ -16,7 +16,7 @@ export default function ClientsAwards() {
       <Navbar2 textColor={navColor} carouselRef={carouselRef} blurry/>
 
       <main className="flex-1">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8">
           <div className="flex flex-col items-center gap-8">
             {/* Responsive image */}
             <img
@@ -28,8 +28,8 @@ export default function ClientsAwards() {
           </div>
         </div>
       </main>
-      <main className="flex-1 bg-gray-50 mb-0">
-        <div className="max-w-5xl mx-auto px-6">
+      <div className="flex-1 bg-gray-50 mb-0">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8">
           <div className="pt-12">
             {/* Responsive text section */}
             <div className="w-full flex flex-col gap-12 pt-12">
@@ -141,7 +141,7 @@ export default function ClientsAwards() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
