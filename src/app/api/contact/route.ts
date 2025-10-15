@@ -6,9 +6,21 @@ import nodemailer from "nodemailer";
 export async function POST(req: Request) {
   const { name, email, subject, message } = await req.json();
 
-  // Basic validation
-  if (!name || !email || !subject || !message) {
-    return NextResponse.json({ error: "All fields are required." }, { status: 400 });
+  // Improved validation
+  function isValidEmail(email: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  if (
+    !name || typeof name !== "string" || name.trim().length < 2 ||
+    !email || typeof email !== "string" || !isValidEmail(email) ||
+    !subject || typeof subject !== "string" || subject.trim().length < 2 ||
+    !message || typeof message !== "string" || message.trim().length < 10
+  ) {
+    return NextResponse.json(
+      { error: "Please fill out all fields correctly." },
+      { status: 400 }
+    );
   }
 
   // Configure your SMTP transport (use env vars in production)

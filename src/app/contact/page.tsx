@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Navbar2 } from "@/components/Navbar2";
+import AnimatedLogo from "@/components/DynamicLogo";
 
 export default function Contact() {
   const navColor = "black";
@@ -51,9 +52,13 @@ export default function Contact() {
       <Navbar2 textColor={navColor} carouselRef={carouselRef} />
       <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="max-w-3xl w-full bg-white rounded-lg shadow-xl p-8">
-          <h1 className="text-2xl font-light mb-6 text-center">
-            Contact Coco Sato
+          <div className="flex justify-center mb-5">
+            <AnimatedLogo className="w-20 h-20" speed={1000} />
+          </div>
+          <h1 className="text-xl font-light mb-6 text-center">
+            Contact Coco.
           </h1>
+
           {submitted ? (
             <div className="text-green-600 text-center font-medium py-8">
               Thank you for your message! I'll get back to you soon.
@@ -95,7 +100,7 @@ export default function Contact() {
                 htmlFor="subject"
                 className="block text-sm text-gray-700 mb-1"
                 >
-                Subject
+                Subject <span className="text-red-500">*required</span>
                 </label>
                 <input
                   type="text"
@@ -115,6 +120,7 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
+                  placeholder="Your message..."
                   rows={5}
                   required
                   className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-200"
