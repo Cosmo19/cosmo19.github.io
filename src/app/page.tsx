@@ -68,13 +68,15 @@ export default function Home() {
         />
       </div>
 
-      <div className="font-sans w-full p-8 pb-20 gap-16 sm:p-20">
+      <div className="font-sans w-full p-8 pb-20 gap-16 sm:p-20 pt-20">
           <div className="max-w-5xl mx-auto px-6">
             <div className="font-sans grid items-center justify-items-center gap-4">
 
               {/* Content */}
               <div className="mx-auto mb-30">
-                <h1 className="text-center text-3xl font-light mb-20">Coco's Philosophy</h1>
+                <h1 className="text-base xs:text-xl md:text-2xl lg:text-3xl font-light mb-20 text-center">
+                  Coco's Philosophy
+                </h1>
                 <div className="flex flex-col [@media(min-width:945px)]:flex-row items-center [@media(min-width:945px)]:items-start gap-8">
                   {/* Image on the left */}
                   <img
@@ -85,7 +87,7 @@ export default function Home() {
                     className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-[415px] aspect-square object-cover object-center shadow-lg flex-shrink-0 flex-grow-0"
                   />
                   {/* Blockquote on the right */}
-                  <blockquote className="[@media(min-width:945px)]:ml-8 text-md font-light border-l-2 pl-6 italic text-gray-500">
+                  <blockquote className="text-xs sm:text-sm md:text-lg font-light border-l-2 pl-4 sm:pl-6 italic text-gray-500 [@media(min-width:945px)]:ml-8">
                     "When I face a piece of smooth pristine paper, I think about the future and faraway lands and what can I do to bring positive change.<br/><br/>
                     Can I inspire interest in different cultures? Will the work still resonate in decades to come? Could it even be transported into space? What legacy can I leave...<br/><br/>
                     Creating something beautiful yet timeless is my mission. I translate the wisdom of Japanese tradition for a new generation.<br/><br/>

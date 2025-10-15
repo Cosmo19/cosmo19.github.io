@@ -156,14 +156,13 @@ export default function Gallery() {
             {/* Sticky sidebar for categories */}
             <div className="md:sticky md:top-24 md:self-start md:w-36 z-10">
                 <h3 className="font-light text-center mb-4">Filters</h3>
-                <div className="flex flex-row md:flex-col gap-2 mb-4">
+                <div className="flex flex-wrap md:flex-col gap-2 mb-4 w-full">
                     {[
                         "All",
-                        "George Jensen",
-                        "Viva La Vulva",
-                        "EQT Ventures",
-                        "Lexus",
-                        "Misc"
+                        "Installations",
+                        "Product Design",
+                        "Art Direction",
+                        "Ambassador Work",
                     ].map((cat) => (
                         <button
                             key={cat}
