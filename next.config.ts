@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  basePath: '/your-repo-name', // must match your GitHub repo name
+  images: {
+    unoptimized: true, // required for static export
+  },
 };
+
+module.exports = nextConfig;
 
 export default nextConfig;
